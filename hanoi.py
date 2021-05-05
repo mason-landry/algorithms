@@ -18,18 +18,21 @@ class World:
     def show_disks(self, disks:list):
         for i, peg in enumerate(self.grid):
             peg[disks[i].position] = disks[i].label
-            # print(i, peg)
+            print(i, peg)
 
             
 
 
-def hanoi_solve(disks, source, dest, spare):
-    print(disks)
-    num = len(disks)
-    if num == 1:
+def hanoi_solve(disks:list, source, dest, spare):
+    if len(disks) == 1:
         disks[0].update_position(dest)
     else:
-        hanoi_solve(num-1, disks[1].position,spare,dest)
+        num = len(disks)-1
+        hanoi_solve(disks[:num-1], disks[1].position,spare,dest)
+        disks[num].update_position(dest)
+        hanoi_solve(disks[:num-1], disks[1].position,dest,spare)
+
+
 
 
 
@@ -50,4 +53,5 @@ if __name__ == '__main__':
     world.show_disks(disks)
 
     hanoi_solve(disks, start_peg, target_peg, spare_peg)
+    world.show_disks(disks)
     
