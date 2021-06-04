@@ -16,4 +16,4 @@ def getNthFib(N:int):
     return fib[-1]
     
 if __name__ == "__main__":
-    print(getNthFib(50))
+    print(getNthFib(pow(10,13)))
